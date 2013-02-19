@@ -26,9 +26,10 @@ function Controller() {
 			ws.send("command-0");
 		});
 		
+		self.ws = ws;
 		// gamepade support
 		gamepadSupport.init();
-		self.ws = ws;
+		
 	};
 	
 	self.moveRobot = function(upDown, leftRight){

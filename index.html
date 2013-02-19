@@ -4,27 +4,55 @@
 	<meta charset="utf-8" />
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="scripts/controller.js"></script>
+	<script src="scripts/communicator.js"></script>
 	<script src="scripts/index.js"></script>
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" media="all" href="css/main.css">
 </head>
 
 <body>
 	
 	<div id="wrapper">
-	
-		<video id="movie" width="460" height="306" preload autoplay>
-	        
-	    </video>
+		
+		<header>
+			<h1>Android Robot - web client</h1>
+		</header>
+		<aside>
 	    
-	    <img id="image" />
-	    <button id="show">Zobraz</button>
+	    	<div class="controll">
+			    &nbsp;&nbsp;&nbsp;<span id="forward">&uarr;</span>
+			    <br />
+			    &nbsp;&nbsp;&nbsp;&nbsp;<span id="left">&larr;</span>
+			    <span id="right">&rarr;</span>
+			    <br />
+			    &nbsp;&nbsp;&nbsp;<span id="backward">&darr;</span>
+		    </div>
+		    
+		    <br />
+		    <br />
+		    
+		    <div class="monitor">
+		    	<strong>Stav připojení: </strong><br /><span id="conStatus"></span><br />
+		    	<strong>Celkem přijato: </strong><br /><span id="total"></span><br />
+		    	<strong>Průměrný tok dat: </strong><br /><span id="bitrate"></span><br />
+		    	<strong>Odezva: </strong><br /><span id="ping"></span><br />
+		    	<strong>Uplynulý čas: </strong><br /><span id="timeElapsed"></span><br />
+		    </div>
+		    
+	    </aside>
+		<section id="main">
+			<progress></progress>
+			<img id="image" />
+			
+		</section>
 	    
-	    <div id="controll-pannel">
-		    <span id="forward">Kupředu</span>
-		    <span id="backward">Dozadu</span>
-		    <span id="left">Doleva</span>
-		    <span id="right">Doprava</span>
-	    </div>
-    
+	    
+    	
+    	<footer>
+    		&copy;2013
+    	</footer>
+    	
     </div>
     
 </body>

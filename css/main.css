@@ -1,0 +1,78 @@
+/* Android Robot - main style for web client 
+   2013 Tomáš Voslař (t.voslar@gmail.com) */
+
+/* resetovani */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, 
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+body {
+	font-family: 'Open Sans';
+	font-weight: 300;
+	color: #000;
+	font-size: 10pt;
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}
+
+#wrapper {
+	color: white;
+	background-color: #2c2c2c;
+}
+
+section {
+	
+}
+
+header {
+	height: 50px;
+	background-color: #1e1e1e;
+	font-size: 14pt;
+	border-bottom: 1px solid #737373;
+}
+
+aside {
+	background-color: #1e1e1e;
+	width: 200px;
+	float: right;
+	vertical-align: top;
+	text-align: center;
+	border-left: 1px solid #737373;
+}
+
+footer{
+	background-color: #1e1e1e;
+	height: 50px;
+	border-top: 1px solid #737373;
+}
+
+.controll{
+	font-size: 18pt;
+}
+
+.controll span{
+	display: inline-block;
+	width: 40px;
+	text-align: center;
+}
+
+.controll span:hover{
+	background: #9d3e32;
+	cursor: pointer;
+}

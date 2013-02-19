@@ -11,6 +11,7 @@ var server = net.createServer(function(socket){
 
 	robotSocket = socket;
 	console.log("Robot pripojen.");
+	client.send("robot connect");
 	
 	socket.on('data', function(data){
 		
@@ -27,7 +28,8 @@ var server = net.createServer(function(socket){
 			
 			// odesilani video streamu klientovi
 			if(typeof client != "undefined"){
-
+				
+				client.send(new Buffer(image, 'hex').length);
 				client.send(new Buffer(image, 'hex').toString("base64"));
 			}
 		}
@@ -36,6 +38,7 @@ var server = net.createServer(function(socket){
 	
 	socket.on('close', function(connection){
 		console.log("Robot odpojen");
+		client.send("robot disconnect");
 	});
 });
 
