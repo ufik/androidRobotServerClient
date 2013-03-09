@@ -14,7 +14,7 @@ function Communicator(){
 	self.init = function(){
 		if ("WebSocket" in window) {
 
-			  self.ws = new WebSocket("ws://localhost:1338");
+			  self.ws = new WebSocket("ws://31.31.79.28:1338");
 			  
 			  /**
 			   * Callback po navazani spojeni se serverem.
