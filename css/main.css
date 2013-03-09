@@ -68,11 +68,25 @@ footer{
 
 .controll span{
 	display: inline-block;
-	width: 40px;
 	text-align: center;
 }
 
 .controll span:hover{
 	background: #9d3e32;
 	cursor: pointer;
+}
+
+#loader {
+    display: none;
+}
+
+#loader.active {
+    display: block;
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 43px;
+    height: 11px;
+    background: url('../images/loader.gif') no-repeat center top;
 }

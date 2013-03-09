@@ -7,23 +7,27 @@ function Controller() {
 	self.init = function(ws) {		
 		// visual controller support
 		$("#forward").mousedown(function(){
-			ws.send("command-1");
+			ws.send("command-1;50;");
 		});
 		
 		$("#backward").mousedown(function(){
-			ws.send("command-2");
+			ws.send("command-2;50;");
 		});
 		
 		$("#left").mousedown(function(){
-			ws.send("command-3");
+			ws.send("command-3;50;");
 		});
 		
 		$("#right").mousedown(function(){
-			ws.send("command-4");
+			ws.send("command-4;50;");
 		});
 		
 		$("#forward, #backward, #left, #right").mouseup(function(){
-			ws.send("command-0");
+			ws.send("command-0;0;");
+		});
+		
+		$("#torch").click(function(){
+			ws.send("command-torch");
 		});
 		
 		self.ws = ws;
@@ -33,50 +37,45 @@ function Controller() {
 	};
 	
 	self.moveRobot = function(upDown, leftRight){
-		
+		console.log(upDown);
 		// forward
 		if(self.ws){
 			
 			if(upDown < 0){
-				if(!self.robotIsMoving){
-					self.ws.send("command-1");
+					self.ws.send("command-1;" + Math.abs(Math.round(upDown*100)) + ";");
 					self.robotIsMoving = true;
 					console.log("dopredu");
-				}
 				
 			// backward
 			}else if(upDown > 0){
-				if(!self.robotIsMoving){
-					self.ws.send("command-2");
+					self.ws.send("command-2;" + Math.abs(Math.round(upDown*100)) + ";");
 					self.robotIsMoving = true;
 					console.log("dozadu");
-				}
 				
 			}else if(leftRight < 0){
-				if(!self.robotIsMoving){
-					self.ws.send("command-3");
+					self.ws.send("command-3;" + Math.abs(Math.round(leftRight*100)) + ";");
 					self.robotIsMoving = true;
 					console.log("vlevo");
-				}
 				
 			// right
 			}else if(leftRight > 0){
-				if(!self.robotIsMoving){
-					self.ws.send("command-4");
+					self.ws.send("command-4;" + Math.abs(Math.round(leftRight*100)) + ";");
 					self.robotIsMoving = true;
 					console.log("vpravo");
-				}
 				
 			}else{
-				if(self.robotIsMoving){
-					self.ws.send("command-0");
+					self.ws.send("command-0;0;");
 					self.robotIsMoving = false;
 					console.log("stop");
-				}
 				
 			}
 		}
 		
+	};
+	
+	self.switchFlashLight = function(){
+		self.ws.send("command-torch;-1");
+		console.log("flashligt switched");
 	};
 	
 	var gamepadSupport = {
@@ -180,6 +179,10 @@ function Controller() {
 				
 				var upDown = gamepad.axes[1];
 				var leftRight = gamepad.axes[0];
+
+				if(gamepad.buttons[0] == "1"){
+					self.switchFlashLight();
+				}
 				
 				self.moveRobot(upDown, leftRight);
 				
