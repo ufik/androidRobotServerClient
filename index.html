@@ -9,6 +9,7 @@
 	
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" media="all" href="css/main.css">
+	<link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 689px)" href="css/mobile.css" />
 </head>
 
 <body>
@@ -21,6 +22,10 @@
 		<aside>
 	    
 	    	<div class="controll">
+	    		
+	    		<span id="torch">Světlo</span>
+	    		<br />
+	    		
 			    &nbsp;&nbsp;&nbsp;<span id="forward">&uarr;</span>
 			    <br />
 			    &nbsp;&nbsp;&nbsp;&nbsp;<span id="left">&larr;</span>
@@ -38,17 +43,16 @@
 		    	<strong>Průměrný tok dat: </strong><br /><span id="bitrate"></span><br />
 		    	<strong>Odezva: </strong><br /><span id="ping"></span><br />
 		    	<strong>Uplynulý čas: </strong><br /><span id="timeElapsed"></span><br />
+		    	<strong>Vzdálenost překážky: </strong><br /><span id="distance"></span><br />
 		    </div>
 		    
 	    </aside>
 		<section id="main">
-			<progress></progress>
+			<span id="loader" class="active"></span>
 			<img id="image" />
 			
 		</section>
-	    
-	    
-    	
+
     	<footer>
     		&copy;2013
     	</footer>

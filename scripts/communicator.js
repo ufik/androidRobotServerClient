@@ -8,6 +8,7 @@ function Communicator(){
 	self.actualReceived = 0;
 	self.averagePerSecond = 0;
 	self.ping = 0;
+	self.distance = 0;
 	
 	self.startTime = new Date().getTime();
 	
@@ -23,6 +24,7 @@ function Communicator(){
 			    // Websocket je připojen.
 			    console.log("Spojeni navazano.");
 			    self.connected = true;
+			    $("#loader").removeClass("active");
 			    
 			    // inicializace ovladani, vizualni, klavesnice nebo herni ovladac
 			    var controller = new Controller();
@@ -37,17 +39,25 @@ function Communicator(){
 			   if(evt.data != "robot disconnect" && evt.data != "robot connect"){
 				   if(evt.data.length > 0){
 					   if(evt.data.length < 10){
-						   self.totalReceived += parseInt(evt.data);
-						   self.actualReceived = parseInt(evt.data);   
+						   
+						   if(evt.data.indexOf("#") != -1)
+							   self.distance = evt.data.substr(1, evt.data.length); 
+						   else{
+							   self.totalReceived += parseInt(evt.data);
+							   self.actualReceived = parseInt(evt.data);
+						   }
 					   }
 					   else
 						   $("#image").attr("src", "data:image/jpeg;base64," + evt.data);
 				   }
 			   }else{
-				   if(evt.data == "robot disconnect") self.connected = false;
-				   else{
+				   if(evt.data == "robot disconnect"){
+					   self.connected = false;
+					   $("#loader").addClass("active");
+				   }else{
 					   self.resetData();
 					   self.connected = true;
+					   $("#loader").removeClass("active");
 				   }
 			   }
 			   
@@ -90,6 +100,11 @@ function Communicator(){
 		$("#bitrate").html(self.formatBytes(self.totalReceived / ((new Date().getTime() - self.startTime) / 1000)) + "/s");
 		$("#ping").html(self.ping);
 		$("#timeElapsed").html((new Date().getTime() - self.startTime) / 1000);
+		
+		if(self.distance > 170)
+			$("#distance").html("> 170cm");
+		else
+			$("#distance").html(self.distance + "cm");
 		
 	};
 	
